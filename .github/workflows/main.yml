@@ -15,15 +15,18 @@ jobs:
           sudo apt-get install -y clang python3 python3-pip git
           git clone https://github.com/alliedmodders/ambuild
           pip3 install ./ambuild
-      - name: Download SourceMod SDK
+      - name: Download SDKs
         run: |
           wget https://github.com/alliedmodders/sourcemod/archive/1.11-dev.tar.gz -O sm.tar.gz
           tar xf sm.tar.gz
           mv sourcemod-1.11-dev sourcemod
+          wget https://github.com/alliedmodders/metamod-source/archive/master.tar.gz -O mmsource.tar.gz
+          tar xf mmsource.tar.gz
+          mv metamod-source-master mmsource
       - name: Configure & build
         run: |
           mkdir build && cd build
-          CC=clang CXX=clang++ python3 ../configure.py --enable-optimize --sm-path=../sourcemod
+          CC=clang CXX=clang++ python3 ../configure.py --enable-optimize --sm-path=../sourcemod --mms-path=../mmsource
           ambuild
       - name: Upload artifact
         uses: actions/upload-artifact@v4
