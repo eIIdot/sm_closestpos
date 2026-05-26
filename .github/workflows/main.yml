@@ -6,6 +6,7 @@ on:
     - LICENSE
     - README.md
   pull_request:
+  workflow_dispatch:
     paths-ignore:
     - LICENSE
     - README.md
