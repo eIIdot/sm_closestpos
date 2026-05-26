@@ -23,10 +23,11 @@ jobs:
           wget https://github.com/alliedmodders/metamod-source/archive/master.tar.gz -O mmsource.tar.gz
           tar xf mmsource.tar.gz
           mv metamod-source-master mmsource
+          git clone https://github.com/alliedmodders/sourcepawn sourcepawn
       - name: Configure & build
         run: |
           mkdir build && cd build
-          CC=clang CXX=clang++ python3 ../configure.py --enable-optimize --sm-path=../sourcemod --mms-path=../mmsource
+          CC=clang CXX=clang++ python3 ../configure.py --enable-optimize --sm-path=../sourcemod --mms-path=../mmsource --sp-path=../sourcepawn
           ambuild
       - name: Upload artifact
         uses: actions/upload-artifact@v4
