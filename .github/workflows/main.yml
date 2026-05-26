@@ -26,4 +26,6 @@ jobs:
           ambuild
       - name: Upload artifact
         uses: actions/upload-artifact@v4
-        wit
+        with:
+          name: closestpos-linux
+          path: build/package/
